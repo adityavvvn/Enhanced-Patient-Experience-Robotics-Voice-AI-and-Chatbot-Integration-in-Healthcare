@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Outpatient Booking</title>
+    <style>
+        body {
+            background-image: url('back_emergencyop.jpg');
+            background-repeat: no-repeat;
+            background-size: cover; /* Cover the entire background */
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Set the body height to full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for better readability */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for better visual appeal */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff; /* Blue color for the submit button */
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker shade of blue on hover */
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Emergency Outpatient Booking</h1>
+        <form action="#" method="POST" id="bookingForm">
+            <label for="fullname">Patient's Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required>
+
+            <label for="guardian">Guardian's Name:</label>
+            <input type="text" id="guardian" name="guardian" required>
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" required>
+
+            <label for="bloodtype">Blood Type:</label>
+            <select id="bloodtype" name="bloodtype" required>
+                <option value="">Select Blood Type</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+
+            <label for="reason">Reason for Visit:</label>
+            <select id="reason" name="reason" required>
+                <option value="">Select One</option>
+                <option value="Injury">Injury</option>
+                <option value="Illness">Illness</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <input type="submit" value="Submit">
+        </form>
+        <div class="message" id="confirmationMessage"></div>
+    </div>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var fullName = document.getElementById('fullname').value;
+            var guardianName = document.getElementById('guardian').value;
+            var phone = document.getElementById('phone').value;
+            var bloodType = document.getElementById('bloodtype').value;
+            var reason = document.getElementById('reason').value;
+
+            // Here you can perform further actions with the form data
+            // For now, let's just display a confirmation message
+            document.getElementById('confirmationMessage').innerText = fullName + ", your booking for " + reason + " has been recorded under the guardian " + guardianName + ". Blood type: " + bloodType + ".";
+        });
+    </script>
+</body>
+</html>

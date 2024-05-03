@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Outpatient Booking</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('back_generalop.jpg'); /* Replace 'background_image.jpg' with your image file */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #paymentForm img {
+            width: 50%; /* Decrease the size of the QR code image to 50% */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>General Outpatient Booking</h1>
+        <form id="bookingForm">
+            <label for="time">Select Time:</label>
+            <select id="time" name="time">
+                <option value="morning">Morning</option>
+                <option value="afternoon">Afternoon</option>
+                <option value="evening">Evening</option>
+            </select><br><br>
+
+            <label for="specialization">Select Specialization:</label>
+            <select id="specialization" name="specialization">
+                <option value="cardiology">Cardiology</option>
+                <option value="orthopedics">Orthopedics</option>
+                <option value="neurology">Neurology</option>
+            </select><br><br>
+
+            <button type="button" onclick="checkAvailability()">Check Availability</button>
+        </form>
+
+        <div id="doctorAvailability"></div>
+
+        <div id="paymentForm" style="display: none;">
+            <h2>Payment</h2>
+            <p>OP Fee: $500</p>
+            <img src="QR.jpg" alt="Payment QR Code"><br><br>
+            <button type="button" onclick="confirmBooking()">Confirm Booking</button>
+            <div id="bookingDetails" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkAvailability() {
+            // Simulated data, replace with actual logic to check availability
+            const availableDoctors = {
+                "morning": ["Dr. Smith", "Dr. Johnson"],
+                "afternoon": ["Dr. Wilson", "Dr. Brown"],
+                "evening": ["Dr. Garcia", "Dr. Martinez"]
+            };
+
+            const time = document.getElementById("time").value;
+            const specialization = document.getElementById("specialization").value;
+            const doctors = availableDoctors[time];
+
+            let doctorListHTML = "<h2>Available Doctors</h2>";
+            doctorListHTML += "<ul>";
+            doctors.forEach(doctor => {
+                doctorListHTML += "<li>" + doctor + "</li>";
+            });
+            doctorListHTML += "</ul>";
+
+            document.getElementById("doctorAvailability").innerHTML = doctorListHTML;
+            document.getElementById("paymentForm").style.display = "block";
+        }
+
+        function confirmBooking() {
+            const time = document.getElementById("time").value;
+            const specialization = document.getElementById("specialization").value;
+            const doctor = document.getElementById("doctor").value;
+
+            const bookingDetailsHTML = "<h2>Booking Details</h2>" +
+                                       "<p>Time: " + time + "</p>" +
+                                       "<p>Specialization: " + specialization + "</p>" +
+                                       "<p>Doctor: " + doctor + "</p>";
+
+            document.getElementById("bookingDetails").innerHTML = bookingDetailsHTML;
+            document.getElementById("bookingDetails").style.display = "block";
+        }
+    </script>
+</body>
+</html>
